@@ -1,0 +1,8 @@
+[book]
+authors = ["algebroid"]
+multilingual = false
+src = "src"
+title = "Mathematics for Computer Science"
+
+[output.html]
+mathjax-support=true
