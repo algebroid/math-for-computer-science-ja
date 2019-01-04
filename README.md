@@ -6,9 +6,9 @@
 
 # I. 証明
 
-[イントロダクション](i-proof/introduction.md)
+[イントロダクション](src/i-proof/introduction.md)
 
-1. [証明とは何か？](i-proof/01-what-is-proof.md)
+1. [証明とは何か？](src/i-proof/01-what-is-proof.md)
     1. 命題
     1. 述語
     1. 公理的手法
