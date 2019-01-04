@@ -1,6 +1,6 @@
 # 『計算機科学のための数学』の読書ノート
 
-このドキュメントはLehman, Leighton, Meyer著『[Mathematics for Computer Science](https://www.amazon.co.jp/Mathematics-Computer-Science-Eric-Lehman/dp/9888407066)』の読書ノートです。本書籍はCC BY-SA 3.0でライセンスされており、[web上で読むことができます(pdf)](https://courses.csail.mit.edu/6.042/spring18/mcs.pdf)。
+このドキュメントはLehman, Leighton, Meyer著『Mathematics for Computer Science』の読書ノートです。本書籍はCC BY-SA 3.0でライセンスされており、[web上で読むことができます(pdf)](https://courses.csail.mit.edu/6.042/spring18/mcs.pdf)。
 
 # 目次
 
