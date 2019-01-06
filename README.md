@@ -2,13 +2,15 @@
 
 このドキュメントはLehman, Leighton, Meyer著『Mathematics for Computer Science』の読書ノートです。本書籍はCC BY-SA 3.0でライセンスされており、[web上で読むことができます(pdf)](https://courses.csail.mit.edu/6.042/spring18/mcs.pdf)。
 
+[このノートを読む](https://algebroid.github.io/math-for-computer-science-ja/)
+
 # 目次
 
 # I. 証明
 
 [イントロダクション](src/i-proof/introduction.md)
 
-1. [証明とは何か？](src/i-proof/01-what-is-proof.md)
+1. [証明とは何か？](https://algebroid.github.io/math-for-computer-science-ja/i-proof/01-what-is-proof.html)
     1. 命題
     1. 述語
     1. 公理的手法
