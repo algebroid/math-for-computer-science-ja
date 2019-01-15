@@ -1,0 +1,528 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>証明とは何か？ - Mathematics for Computer Science</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">var path_to_root = "../";</script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li><a href="../i-proof/01-what-is-proof.html" class="active"><strong aria-hidden="true">1.</strong> 証明とは何か？</a></li><li><a href="../i-proof/02-well-ordering-principle.html"><strong aria-hidden="true">2.</strong> 整列可能原理</a></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Mathematics for Computer Science</h1> 
+
+                        <div class="right-buttons">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="#a証明とは何か" id="a証明とは何か"><h1>証明とは何か？</h1></a>
+<a class="header" href="#a11-命題" id="a11-命題"><h2>1.1 命題</h2></a>
+<p><strong>定義.</strong> 命題とは真または偽である文である．</p>
+<p>以下の2つの文は命題である．前者は真で，後者は偽である．</p>
+<p><strong>命題 1.1.1.</strong>     \( 2 + 3 = 5 \)</p>
+<p><strong>命題 1.1.2.</strong>     \( 1 + 1 = 3 \)</p>
+<p>命題の定義は当たり前のことを言っているように思えるかもしれないが，真偽のはっきりしない文を排除することができるので有用である．「おおロミオ，あなたはどうしてロミオなのか（疑問文）」や「Aをください！（命令文）」という文は命題ではない．また時と場合によって真偽が異なる命題，「今は5時だ」や「株価は明日上がるだろう」もここでは排除される．</p>
+<p>残念ながら，命題であっても真偽を判断することは難しいことがある．</p>
+<p><strong>主張 1.1.3</strong> すべての非負整数 \(n\) について\(n^2 + n + 41\)は素数である．</p>
+<p>これを検証してみる．この式を</p>
+<p>\[
+p(n) ::= n^2 + n + 41. \tag{1.1}
+\]</p>
+<p>という関数にすると，\(p(0) = 41\)から始めて，これは素数である，さらに続けて</p>
+<p>\[
+p(1) = 43, p(2) = 47, p(3) = 53, \cdots, p(20) = 461.
+\]</p>
+<p>で\(p(0)\)から\(p(20)\)までは全て素数である．非常にもっともらしい主張なので，\(n\)を大きくして\(n=39\)まで検証すると\(p(39) = 1601\)でここまで全て素数であることがわかる．</p>
+<p>しかし\(p(40) = 40^2 + 40 + 41 = 41 \cdot 41\)でこれは素数ではない．なので主張 1.1.3 は偽であることがわかった．</p>
+<p>実際には，定数でもない限り，整数係数を持つ多項式がすべての非負整数を素数に写すことができないことを示すのは難しいことではない（問題1.25を参照）．しかし上の例は，一般に無限の集合から有限のサンプルを取ることにより，主張の正当性を検証することはできないという点を強調している．</p>
+<p>ところで，<strong>すべての</strong>非負整数という言い方をするための，特別な数学的記法がある．その記法を使うと主張1.1.3は以下のように書き換えられる（\(p(n)\)はすでに定義されているとする）．</p>
+<p>\[
+\forall n \in \mathbb{N}. p(n)\ is\ prime. \tag{1.2}
+\]</p>
+<p>\(\forall\)は&quot;すべての(forall)&quot;と読む．\(\mathbb{N}\)は非負整数全体の集合を表す．\(\in\)は&quot;（左側）は（右側）の要素である(is a member of)&quot;と読む．\(\mathbb{N}\)の後のピリオドは，単にフレーズを分けるための記号である．</p>
+<p>極端な例を見てみる．</p>
+<p><strong>予想．</strong> [Eulerによる]方程式</p>
+<p>\[
+a^4 + b^4 + c^4 = d^4
+\]</p>
+<p>は\(a, b, c, d\)が非負整数の場合に解を持たない．これはEulerによって1769年に提出された予想だが，218年後にNoam Elkiesによって偽であることが証明された．具体的な解として，</p>
+<p>\[a = 95800, b = 217519, c = 414560, d = 422481\]</p>
+<p>が存在する．</p>
+<p>論理記号を用いると，Eulerの予想は次のように書ける：</p>
+<p>\[
+\forall a \in \mathbb{Z^{+}}\ \forall b \in \mathbb{Z^{+}}\ \forall c \in \mathbb{Z^{+}}\ \forall d \in \mathbb{Z^{+}}. a^4 + b^4 + c^4 \neq d^4.
+\]</p>
+<p>ここで\(\mathbb{Z^{+}}\)は非負整数である．一連の\(\forall\)を書くのは煩雑なので次のように略記法が使える．</p>
+<p>\[
+\forall a, b, c, d \in \mathbb{Z^{+}}. a^4 + b^4 + c^4 \neq d^4
+\]</p>
+<p>次の例は有限からのサンプリングでは反証するのが難しい例を挙げる．以下の式を満たす最小の\(x, y, z\)は1000桁以上（！）になることが知られている．</p>
+<p><strong>偽の主張．</strong>\(313(x^3 + y^3) = z^3\)は\(x, y, z \in \mathbb{Z^{+}.}\)のとき解を持たない．</p>
+<p>次に，肯定的に証明された予想の中で有名なものを示す．</p>
+<p><strong>命題 1.1.4 (四色定理）</strong> 地図は4色あればどの隣接する国とも塗り分けることができる．</p>
+<p>四色定理は数々の間違った証明が発表されてきた．19世紀には間違いと分かるまで10年間支持されていた証明もあった．1976年にAppelとHakenという数学者によって煩雑な証明が発見された．この証明には4-彩色可能な地図を分類するためにコンピュータープログラムが用いられた．プログラムによっても分類できない地図が数千あったので，それはHakenとその助手（その中には15歳の娘がいた）によって手作業で検証された．</p>
+<p><strong>命題 1.1.5</strong> （Fermatの最終定理）． 整数\(n &gt; 2\)において</p>
+<p>\[
+x^n + y^n = z^n
+\]</p>
+<p>を満たす整数\(x, y, z\)は存在しない．</p>
+<p>この定理はかねてより4,000,000以下のnでは正しいことが知られていた．しかしこれまで見てきたように，それだけでは全てのnについて正しいと言うには足りない．先に見たEulerの（偽だった）予想と，この定理の間には明らかな相似が見られる．</p>
+<p>次に真偽が不明な命題を見てみる．</p>
+<p><strong>命題 1.1.6</strong> （ゴールドバッハ予想） 2より大きい偶数は2つの素数の和で表される．</p>
+<p>この予想は\(10^{18}\)まで正しいことが知られている．しかしながら全ての偶数について正しいかは誰も知らない．</p>
+<p>さて，計算機科学者にとって証明すべき重要な事柄は，プログラムやシステムの正しさであり，それらが想定された動作を正しく行うどうかということである．プログラムというのは非常にバグりやすいものであり，多数の研究者や実務家がプログラムの正しさを証明する方法を模索している．CPUチップの世界ではこれらの努力は十分に成功していて，チップの動作が正しいことを証明する手法は，悪名高い過去の過ちを避けるために大手半導体メーカーによって日常的に利用されている．</p>
+<p>プログラムとシステムを検証するための数学的手法の開発は，現在活発な研究領域である．我々は5章でそれらの手法を概観する．</p>
+<a class="header" href="#a12-述語" id="a12-述語"><h2>1.2 述語</h2></a>
+<p>述語は，真偽が1つ以上の変数に依存している命題である．&quot;nは完全平方である&quot;この文は述語である．なぜかというと，この命題の真偽は変数nが与えられるまで分からないからである．例としてnが4として与えられたとすると，この述語は正しい命題&quot;4は完全平方である&quot;になる．注意すべきは，この述語を無理やり正しい命題にしようとする必要はないということだ．nを5とするとこの述語は偽の命題&quot;5は完全平方である&quot;になる．</p>
+<p>関数風の記法が特定の変数値を取る述語を意味するものとして使われることがある．例えばPというアルファベットを使って</p>
+<p>\[
+P(n) ::= &quot;nは完全平方である&quot;
+\]</p>
+<p>として上の具体例をもう一度当てはめると，\(P(4)\)は真で\(P(5)\)は偽となる．</p>
+<p>この述語の記法はあくまで関数風であり，普通の関数と混同してはいけない．述語\(P\)に\(n\)を与えると，結果は必ず<strong>真か偽</strong>になる．例として普通の関数\(p(n) = n^2 + 1\)に数を与えると，結果は<strong>数量</strong>になる．</p>
+<a class="header" href="#a13-公理的手法" id="a13-公理的手法"><h2>1.3 公理的手法</h2></a>
+<p>今日の数学では公理から証明を積み上げていくという方法が取られていること，定理と補題と系(corollary)の説明．ZFCは8章で触れる．</p>
+<a class="header" href="#a14-我々の公理" id="a14-我々の公理"><h2>1.4 我々の公理</h2></a>
+<p>ZFCは数学の基礎付けを行う上で重要だが，実用上はあまりに素朴すぎる．ZFCで定理の証明を行うことは，高級言語ではなくバイトコードでプログラムを書くことに等しい．ある見積もりによると，ZFCによる\(2 + 2 = 4\)の証明は20,000ステップにも及ぶ．なので本書ではZFCから始めずに，多数の公理を導入することにする．ここでは高校数学で習った有名な事実は軒並み採用する．</p>
+<p>公理をたくさん採用すれば楽に数学を始められるのはいいとして，読者は公理の不正確な仕様が問題を起こすことを発見するかもしれない．あなたは証明の半ばでこう思うかもしれない「この些細な事実[と思われるもの]は証明すべきなのか，公理として扱うべきなのか？」．この問いに対する絶対的な答えはない．何を証明すべきで，何を仮定とすべきかは状況や伝えたい相手によって異なる．</p>
+<a class="header" href="#a141-論理的演繹" id="a141-論理的演繹"><h3>1.4.1 論理的演繹</h3></a>
+<p>論理的演繹，または<strong>推論規則</strong>は，それまでに証明された命題から新しい命題を証明するために使われる．</p>
+<p>基本的な推論規則の1つはモーダスポネンス（modus ponens）である．この規則は，\(P\)の証明に\(PならばQ\)の証明が伴うなら，それは\(Q\)の証明である，と言っている．</p>
+<p>推論規則は時おり，以下のような面白い記法で書かれる．例としてモーダスポネンスは，</p>
+<p><strong>規則．</strong></p>
+<p>\[
+\frac{P, P\ ならば\ Q}{Q}
+\]</p>
+<p>と記述される．</p>
+<p>横線の上に書かれた文は前件（antecedent）という．対して横線の下に書かれた文は帰結（conclusion）または後件（consequent）という．</p>
+<p>推論規則が満たすべき必須の条件は，<strong>健全</strong>であることである．\(P, Q, \cdots\)などの文字への真理値の割り当てにおいて，すべての前件は真である必要があり，また後件も真となる必要がある．真である公理から出発して，健全な推論規則を適用したならば，そこから証明される事柄はすべて真である．</p>
+<p>モーダスポネンスの他にも多くの健全で自然な推論規則が存在する．以下に例を示す．</p>
+<p><strong>規則．</strong></p>
+<p>\[
+\frac{P\ ならば\ Q, Q\ ならば\ R}{P\ ならば\ R}
+\]</p>
+<p><strong>規則．</strong></p>
+<p>\[
+\frac{NOT(P)\ ならば\ NOT(Q)}{Q\ ならば\ P}
+\]</p>
+<p><strong>以下は規則ではない．</strong></p>
+<p>\[
+\frac{NOT(P)\ ならば\ NOT(Q)}{P\ ならば\ Q}
+\]</p>
+<p>\(P\)が真で\(Q\)が偽のとき，前件は真となるが，後件は偽となる．これは健全ではない．</p>
+<p>ただし，合法な推論規則について形式化を追究しすぎるのはよくない．証明は各ステップが明確で&quot;論理的&quot;であるべきだ．特に新しい事実を導き出す際に，それまでに証明された事実がどのように使われているかに気を払うこと．</p>
+<a class="header" href="#a142-証明のパターン" id="a142-証明のパターン"><h3>1.4.2 証明のパターン</h3></a>
+<p>原則として，証明は，公理と以前に証明された命題から構成される，<strong>任意の</strong>論理的演繹の系列であることができる．はじめのうちは，この証明を構成する自由に圧倒されてしまうかもしれない．</p>
+<p>ここで朗報がある．多くの証明は，ほんの一握りのテンプレートに従って行われているということである．当然それぞれの証明にはそれぞれのディテールがあるので考える必要はあるが，テンプレートがあれば証明を書き始める手がかりが掴めるようになる．以下の節（1.5〜1.8）では標準的なパターンを提示する．そこで基本的な考え方とありがちな落とし穴も示す．</p>
+<a class="header" href="#a15-含意による証明" id="a15-含意による証明"><h2>1.5 含意による証明</h2></a>
+<p><strong>含意</strong>とは，&quot;もし\(P\)なら，\(Q\)である&quot;という形式の命題である．&quot;\(P\)ならば\(Q\)&quot;であるともいう．</p>
+<p>以下にいくつかの例を示す．</p>
+<ul>
+<li>（二次方程式）\(ax^2 + bx + c = 0\)かつ\(a \neq 0\)ならば，</li>
+</ul>
+<p>\[
+x = \frac{(-b \pm \sqrt{b^2 - 4ac})}{2a}.
+\]</p>
+<ul>
+<li>
+<p>（ゴールドバッハ予想 1.1.6の言い換え）\(n\)が2より大きい正の偶数ならば，\(n\)は2素数の和になる．</p>
+</li>
+<li>
+<p>もし\(0 \leq x \leq 2\)ならば，\(-x^3 + 4x + 1 &gt; 0\)．</p>
+</li>
+</ul>
+<a class="header" href="#a151-方法-1" id="a151-方法-1"><h3>1.5.1 方法 1</h3></a>
+<p>&quot;\(P\)ならば\(Q\)&quot;を証明するためには，</p>
+<ol>
+<li>&quot;\(P\)と仮定する&quot;と書く．</li>
+<li>\(Q\)が論理的に従うことを示す</li>
+</ol>
+<p><strong>例</strong></p>
+<p><strong>定理 1.5.1</strong> もし\(0 \leq x \leq 2\)ならば，\(-x^3 + 4x + 1 &gt; 0\)．</p>
+<p>この証明を書く前に，これがなぜ真と言えるのかを理解するための下ごしらえをする．</p>
+<p>この不等号は\(x=0\)で確かに成立することがわかる（\(1 &gt; 0\)）．\(x\)が増加すると，\(4x\)の（正の）項は初めのうちは\(-x^3\)の（負の）項より大きな度合いで増加する<strong>ように思える</strong>．具体的な数値で比べてみると，\(x=1\)で\(4x = 4\)だが，\(-x^3 = -1\)しかないことが分かる．\(x^3\)の項が支配的になるのは\(x &gt; 2\)の場合である<strong>ように思える</strong>．\(-x^3 + 4x\)は\(0 \leq x \leq 2\)の間で負にならない<strong>ように思える</strong>．よって式全体は正の数になると考えることができる．</p>
+<p>ここまでは順調である．ここから証明を書くには，上の<strong>ように思える</strong>という部分を，確かな論理的主張に置き換えていく必要がある．</p>
+<p>ここでは\(x^3 + 4x\)の部分を因数分解することにより，より適切に主張を表現できるようになる．この式の因数分解は難しくない．</p>
+<p>\[
+-x^3 + 4x = x(2 - x)(2 + x)
+\]</p>
+<p>右辺を見てみよう．因数分解されたそれぞれの項を見ると，0から2の間では非負であることが分かる！そして非負の数の積は非負である．以上の考察を簡潔な証明に落とし込もう．</p>
+<p>証明．\(0 \leq x \leq 2\)と仮定する．すると\(x, 2-x, 2+x\)は非負である．ゆえにこれらの項の積は非負である．よって，この積に1を加えた数は正数になる：</p>
+<p>\[
+x(2-x)(x+2) + 1 &gt; 0
+\]</p>
+<p>左辺を展開すると</p>
+<p>\[
+-x^3 + 4x + 1 &gt; 0
+\]</p>
+<p>これが証明すべき事柄であった．■</p>
+<p>以上の証明方法を適用するには，以下の点に留意するべきである．</p>
+<ul>
+<li>証明の論理的道筋を思い描くまでに，しばしば下ごしらえが必要になる．この下ごしらえはあなた次第でどんな無秩序にもなりうる．完全な行き止まりに陥ったり，ヘンテコな図式を描き散らかしたり，あられもない言葉を綴ったりすることがあるかもしれない．しかし最終的な証明はこの下ごしらえとは分離し，簡潔かつ明快にすべきである．</li>
+<li>証明は&quot;証明&quot;という言葉とともに始まり，&quot;■&quot;または&quot;QED&quot;という区切りによって終結する．</li>
+</ul>
+<a class="header" href="#a152-方法2-対偶論法" id="a152-方法2-対偶論法"><h3>1.5.2 方法2 対偶論法</h3></a>
+<p>\(P ならば Q\)は，その対偶と論理的に同じである．</p>
+<p>\[
+NOT(Q) ならば NOT(P)．
+\]</p>
+<p>対偶を証明することは，オリジナルの文を直接証明するより簡単な場合がある．対偶論法は以下のように進行する：</p>
+<ol>
+<li>&quot;対偶による証明を示す：&quot;と書き，元の文の対偶である命題を述べる．</li>
+<li>方法1と同様に進行する．</li>
+</ol>
+<p><strong>例</strong></p>
+<p><strong>定理 1.5.2．</strong> もし\(r\)が無理数ならば，\(\sqrt{r}\)も無理数である．</p>
+<p>ある数が整数の商と等しいとき，有理数であるという．つまりある数が\(m/n\)と等しい（\(m, n\)は整数）であるということである．有理数でない数を無理数という．よって，\(r\)が整数の比でないとき，\(\sqrt{r}\)も整数の比でないことを示す必要がある．これは実際複雑な文なので，&quot;でない&quot;を除去した対偶による証明を試みる：</p>
+<p>証明． 対偶による証明を示す：もし\(\sqrt{r}\)が有理数ならば，\(r\)は有理数である．</p>
+<p>\(\sqrt{r}\)が有理数であると仮定する．すると以下を満たす整数\(m, n\)が存在し，</p>
+<p>\[
+\sqrt{r} = \frac{m}{n}
+\]</p>
+<p>両辺を自乗すると，</p>
+<p>\[
+r = \frac{m^2}{n^2}
+\]</p>
+<p>\(m^2, n^2\)は整数であるため，\(r\)は有理数である．■</p>
+<a class="header" href="#if-and-only-ifによる証明" id="if-and-only-ifによる証明"><h2>&quot;If and Only If&quot;による証明</h2></a>
+<p>多くの数学的定理が2つの命題が論理的に同値であることを主張している；すなわち，もし一方が成り立ちかつその場合に限り（if and only if），他方が成り立つ．以下の例は数千年前から知られている：</p>
+<blockquote>
+<p>2つの三角形は，2つの辺とその間に挟まれる角度が等しいとき，またそのときに限りすべての辺が等しくなる．</p>
+</blockquote>
+<p>&quot;if and only if&quot;は&quot;iff&quot;と略されることが多い．</p>
+<a class="header" href="#a161-方法1互いの命題がお互いを含意する" id="a161-方法1互いの命題がお互いを含意する"><h3>1.6.1 方法1：互いの命題がお互いを含意する</h3></a>
+<p>\(P\ IFF\ Q\)は，2つの文\(PならばQ\)と\(QならばP\)が成り立つことと同値である．よって&quot;iff&quot;の証明は，2つの含意命題を証明することでできる．</p>
+<ol>
+<li>&quot;\(PならばQ\)およびその逆を証明する&quot;と書く．</li>
+<li>&quot;初めに，\(PならばQ\)を示す．&quot;と書き，証明する．</li>
+<li>&quot;次に，\(QならばP\)を示す．&quot;と書き，証明する．</li>
+</ol>
+<a class="header" href="#a162-方法2iffの連鎖を構成する" id="a162-方法2iffの連鎖を構成する"><h3>1.6.2 方法2：Iffの連鎖を構成する</h3></a>
+<p>この方法で\(P\)が真であるとき，またそのときに限り\(Q\)が真であると証明するためには：</p>
+<ol>
+<li>&quot;我々はif-and-only-if含意の連鎖を構成する．&quot;と書く．</li>
+<li>\(P\)が2番目の文と等しいことを証明し，それが3番目の文と等しいことを証明し，\(Q\)に到達するまでこれを繰り返す．</li>
+</ol>
+<p>これは方法1と比べて独創性を求められる場合がある．しかし最終的には短い，エレガントな証明にできうる．</p>
+<p><strong>例</strong></p>
+<p>値の系列\(x_1, x_2, \cdots, x_n\)の<strong>標準偏差</strong>は次のように定義できる：</p>
+<p>\[
+\sqrt{\frac{(x_1 - \mu)^2 + (x_2 - \mu)^2 + \cdots + (x_n - \mu)^2}{n}} \tag{1.3}
+\]</p>
+<p>ここで\(\mu\)は値の平均値である：</p>
+<p>\[
+\mu ::= \frac{x_1 + x_2 + \cdots + x_n}{n}
+\]</p>
+<p><strong>定理 1.6.1．</strong> 値の系列\(x_1, x_2, \cdots, x_n\)のすべての値が平均値と等しいとき，またそのときに限り標準偏差がゼロとなる．</p>
+<p>すべての生徒のテストの点が平均値と等しいとき，またそのときに限り得点の標準偏差はゼロになる．</p>
+<p><strong>証明．</strong> 我々は&quot;iff&quot;含意の連鎖を構成する．まず式(1.3)をゼロと等しく置いた文から開始する：</p>
+<p>\[
+\sqrt{\frac{(x_1 - \mu)^2 + (x_2 - \mu)^2 + \cdots + (x_n - \mu)^2}{n}} = 0 \tag{1.4}
+\]</p>
+<p>ゼロは平方根がゼロと等しくなる唯一の数であるため，式(1.4)でありそのときに限り，以下が成立する：</p>
+<p>\[
+(x_1 - \mu)^2 + (x_2 - \mu)^2 + \cdots + (x_n - \mu)^2  = 0 \tag{1.5}
+\]</p>
+<p>実数の自乗は常に非負である．よって式(1.5)の左辺の全ての項は非負である．これは(1.5)が成り立つとき，またそのときに限り，以下が成立することを意味する：</p>
+<p>\[
+式(1.5)の左辺の全ての項はゼロである．　\tag{1.6}
+\]</p>
+<p>しかし項\(x_i - \mu)^2\)は\(x_i = \mu\)であるとき，またそのときに限りゼロである．よって(1.6)であるとき，またそのときに限り，</p>
+<p>\[
+すべてのx_iは平均値に等しい．
+\]</p>
+<p>これで求めていた定理が証明された．■</p>
+<a class="header" href="#a17-場合分けによる証明" id="a17-場合分けによる証明"><h2>1.7 場合分けによる証明</h2></a>
+<p>複雑な証明を場合分けして，それぞれの場合に応じて証明を行うことは，汎用的で有用な証明戦略である．以下にこの証明が有力な具体例を示す．</p>
+<p>ある2人の人が，面識があるかないかという観点から見てみる．あるグループ内ですべての人（任意の2人）が面識がある場合，そのグループは<strong>クラブである</strong>という．グループ内ですべての人間がお互いに面識がないとき，そのグループは<strong>他人である</strong>という．</p>
+<p><strong>定理．</strong> 6人を適当にグループ分けすると，少なくとも3人のクラブまたは少なくとも3人の他人のグループが存在する．</p>
+<p><strong>証明</strong> \(x\)を6人のうちの誰か一人を表すものとする．すると\(x\)と他の5人との面識について2つの場合を考えることができる．</p>
+<p><strong>場合1.</strong> 少なくとも3人が\(x\)に会ったことがある．</p>
+<p><strong>場合2.</strong> 少なくとも3人が\(x\)に会ったことがない．</p>
+<p>1の場合をさらに分割する．</p>
+<p><strong>場合 1.1.</strong> \(x\)以外の人は誰も互いに面識がない．すると少なくとも3人の他人グループが存在することがわかる．よってこの場合は定理を満たす．</p>
+<p><strong>場合 1.2.</strong> \(x\)以外の人のうち少なくとも誰か2人が面識がある．するとその2人は\(x\)と面識があるので，少なくとも3人のクラブができる．よってこの場合も定理を満たす．</p>
+<p>2の場合をさらに分割する．</p>
+<p><strong>場合 2.1</strong> \(x\)以外の人が全員お互いに面識がある．すると少なくとも3人のクラブが存在することがわかる．よってこの場合は定理を満たす．</p>
+<p><strong>場合 2.2</strong> \(x\)以外の人のうち少なくとも誰か2人が面識がない．するとその2人は\(x\)と面識がないので少なくとも3人の他人グループが存在する．よってこの場合も定理を満たす．</p>
+<a class="header" href="#a背理法による証明" id="a背理法による証明"><h2>背理法による証明</h2></a>
+<p><strong>背理法</strong>，あるいは<strong>間接証明</strong>とは，ある命題が偽であるとしたとき，そこから偽の事実が真であると導かれたとする．すると偽の事実は定義上は真にはなりえないので，その命題は真でなければならない，とする論証ができる．</p>
+<p>その名前の通り，間接証明は複雑になりがちなので，直接証明ができるならばそちらが推奨される．</p>
+<p><strong>手法：</strong> 命題\(P\)を背理法で証明するには，</p>
+<ol>
+<li>&quot;背理法による証明を行う．&quot;と書く．</li>
+<li>&quot;\(P\)が偽であると仮定する．&quot;と書く．</li>
+<li>偽であると知られている推論にたどり着く（矛盾）．</li>
+<li>&quot;これは矛盾である．ゆえに，\(P\)は真である．&quot;と書く．</li>
+</ol>
+<p><strong>例</strong></p>
+<p>\(\sqrt{2}\)が無理数である証明．</p>
+<a class="header" href="#a良い証明の実践" id="a良い証明の実践"><h2>良い証明の実践</h2></a>
+<p>TODO.</p>
+<a class="header" href="#aセクション11の練習問題" id="aセクション11の練習問題"><h2>セクション1.1の練習問題</h2></a>
+<p><strong>以下の練習問題はメモであり，問題文を正確に記述していません</strong></p>
+<a class="header" href="#a講義問題" id="a講義問題"><h3>講義問題</h3></a>
+<a class="header" href="#a問題-11" id="a問題-11"><h3>問題 1.1</h3></a>
+<p>ピタゴラスの定理を言葉なしで証明するのが目的の回．4つの合同な直角三角形と，意味ありげな正方形が用意されている（原著のFigure 1.1を参照）．\(c \times c\)の正方形になるようこれらの図形を配置せよ，という問題．次に\(a \times a\)と\(b \times b\)．</p>
+<a class="header" href="#a問題-12" id="a問題-12"><h3>問題 1.2</h3></a>
+<p>\[
+1 = \sqrt{1} = \sqrt{(-1)(-1)} = \sqrt{-1}\sqrt{-1} = (\sqrt{-1})^2 = -1
+\]</p>
+<p>(a) どこが間違っているか？</p>
+<p>(b) もし\(1 = -1\)なら\(2 = 1\)であることを証明せよ．</p>
+<p>(c) 正の実数\(r\)および\(s\)について\(\sqrt{rs} = \sqrt{r}\sqrt{s}\)を証明せよ．</p>
+<a class="header" href="#a問題-13" id="a問題-13"><h3>問題 1.3</h3></a>
+<p>偽の主張とその間違った証明が提示される．どこが間違っているか，バグを特定せよ．</p>
+<a class="header" href="#a問題-14" id="a問題-14"><h3>問題 1.4</h3></a>
+<p>算術平均と幾何平均の不等式の証明の間違いを指摘させる問題．</p>
+<a class="header" href="#a問題-15" id="a問題-15"><h3>問題 1.5</h3></a>
+<p>推論の間違いを指摘させる問題．</p>
+<a class="header" href="#aセクション15の練習問題" id="aセクション15の練習問題"><h2>セクション1.5の練習問題</h2></a>
+<a class="header" href="#a宿題" id="a宿題"><h3>宿題</h3></a>
+<a class="header" href="#a問題-16" id="a問題-16"><h3>問題 1.6</h3></a>
+<p>\(\log_{7}{n}\)が整数または無理数になることを証明せよ．</p>
+<a class="header" href="#aセクション17の練習問題" id="aセクション17の練習問題"><h2>セクション1.7の練習問題</h2></a>
+<a class="header" href="#a練習問題" id="a練習問題"><h3>練習問題</h3></a>
+<a class="header" href="#a問題-17" id="a問題-17"><h3>問題 1.7</h3></a>
+<p>\[
+max(r, s) + min(r, s) = r + s
+\]</p>
+<p>を証明せよ．</p>
+<a class="header" href="#a講義問題-1" id="a講義問題-1"><h3>講義問題</h3></a>
+<a class="header" href="#a問題-18" id="a問題-18"><h3>問題 1.8</h3></a>
+<p>無理数の無理数乗が有理数になることはあるか？</p>
+<a class="header" href="#a問題-19" id="a問題-19"><h3>問題 1.9</h3></a>
+<p>任意の実数に対して以下が成り立つことを証明せよ．</p>
+<p>\[
+|r + s| \leq |r| + |s|
+\]</p>
+<a class="header" href="#a宿題-1" id="a宿題-1"><h3>宿題</h3></a>
+<a class="header" href="#a問題-110" id="a問題-110"><h3>問題 1.10</h3></a>
+<p>(a) 非負整数\(a, b, c, d\)として，</p>
+<p>\[
+a + b + c = d
+\]</p>
+<p>と仮定する．これらの整数に関する主張から別の主張を証明する．</p>
+<a class="header" href="#a試験問題" id="a試験問題"><h3>試験問題</h3></a>
+<a class="header" href="#a問題-111" id="a問題-111"><h3>問題 1.11</h3></a>
+<p>\(a^{\sqrt{3}}\)が有理数になるような無理数\(a\)が存在することを証明せよ．</p>
+<a class="header" href="#aセクション18の練習問題" id="aセクション18の練習問題"><h2>セクション1.8の練習問題</h2></a>
+<a class="header" href="#a練習問題-1" id="a練習問題-1"><h3>練習問題</h3></a>
+<a class="header" href="#a問題-112" id="a問題-112"><h3>問題 1.12</h3></a>
+<p>任意の整数\(n &gt; 0\)について，もし\(a^n\)が偶数ならば，\(a\)も偶数である．</p>
+<p>ヒント：背理法</p>
+<a class="header" href="#a問題-113" id="a問題-113"><h3>問題 1.13</h3></a>
+<p>\(a \cdot b =  n \)ならば，\(a,b \leq \sqrt{n}\)を証明せよ．ここで\(a,b,n\)は非負実数である．</p>
+<p>ヒント：背理法</p>
+<a class="header" href="#a問題-114" id="a問題-114"><h3>問題 1.14</h3></a>
+<p>非負整数\(n\)として，</p>
+<p>(a) \(n^2\)が偶数のとき，\(n\)も偶数である理由を説明せよ．</p>
+<p>(b) \(n^3\)が3の倍数のとき，\(n\)も3の倍数である理由を説明せよ．</p>
+<a class="header" href="#a問題-115" id="a問題-115"><h3>問題 1.15</h3></a>
+<p>2つの正整数\(m, n\)があり\(n^2\)が\(m\)の倍数で，\(n\)は\(m\)の倍数でないとする．mがn未満であることをどのように説明できるか？</p>
+<a class="header" href="#a問題-116" id="a問題-116"><h3>問題 1.16</h3></a>
+<p>1.8.1の\(\sqrt{2}\)が無理数である証明を一般化できるか？例えば\(\sqrt{3}\)はどうか．</p>
+<a class="header" href="#a問題-117" id="a問題-117"><h3>問題 1.17</h3></a>
+<p>\(log_{4}{6}\)が無理数であることを証明せよ．</p>
+<a class="header" href="#a問題-118" id="a問題-118"><h3>問題 1.18</h3></a>
+<p>\(\sqrt{3} + \sqrt{2}\)が無理数であることを証明せよ（背理法）．</p>
+<p>ヒント： \(\sqrt{3} + \sqrt{2})(\sqrt{3} - \sqrt{2})\)</p>
+<a class="header" href="#a問題-119" id="a問題-119"><h3>問題 1.19</h3></a>
+<p>問題 1.16の一般化として，以下を考える．</p>
+<p><strong>補題．</strong> 以下の多項式の係数は整数であるとする．</p>
+<p>\[
+a_0 + a_1 x + a_2 x^3 + \cdots + a_{m-1} x^{m-1} + x^m
+\]</p>
+<p>この多項式の実数根は整数または無理数になる．</p>
+<p>(a) \(k\)がある整数の\(m\)乗でないとき，この補題が\(\sqrt[m]{k}\)を直ちに含意する理由を示せ．</p>
+<p>(b) 上の補題を証明せよ．</p>
+<a class="header" href="#a問題-120" id="a問題-120"><h3>問題 1.20</h3></a>
+<p>\(log_{9}{12}\)が無理数であることを証明せよ．</p>
+<a class="header" href="#a問題-121" id="a問題-121"><h3>問題 1.21</h3></a>
+<p>\(log_{12}{18}\)が無理数であることを証明せよ．</p>
+<a class="header" href="#a問題-122" id="a問題-122"><h3>問題 1.22</h3></a>
+<p>\(\sqrt[3]{7^2}\)が無理数であることの証明に関連する式を6つ提示して，それが証明のどこで現れるか．</p>
+<a class="header" href="#a宿題-2" id="a宿題-2"><h3>宿題</h3></a>
+<a class="header" href="#a問題-123" id="a問題-123"><h3>問題 1.23</h3></a>
+<p>問題 1.8の証明を構成的にしたい．</p>
+<a class="header" href="#a問題-124" id="a問題-124"><h3>問題 1.24</h3></a>
+<p>\(\sqrt{2}\)が無理数であることの別証明．証明の概略が示されているが，これは大学講師向けに簡略化されているので詳しく埋めよ，という問題．</p>
+<a class="header" href="#a問題-125" id="a問題-125"><h3>問題 1.25</h3></a>
+<p>素数を生成する多項式は存在しないことの証明．</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+
+                        
+                            <a rel="next" href="../i-proof/02-well-ordering-principle.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+
+                
+                    <a href="../i-proof/02-well-ordering-principle.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
